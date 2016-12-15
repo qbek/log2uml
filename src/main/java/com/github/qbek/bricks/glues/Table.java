@@ -1,52 +1,49 @@
 package com.github.qbek.bricks.glues;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class Table {
 
-  private Map<String, String> dataForTable;
-  private String[] header;
-  private StringBuilder renderedTable = new StringBuilder();
+  private ArrayList<String[]> data;
+  private String[] headers;
 
-  public Table (Map<String, String> data) {
-    dataForTable = data;
+  public Table (ArrayList<String[]> data) {
+    this.data = data;
   }
 
   public String toString() {
-    Iterator<Map.Entry<String, String>> it = dataForTable.entrySet().iterator();
-    Map.Entry<String, String> entry;
-
-    if(header != null) {
-      appendHeader(header[0], header[1]);
+    StringBuilder renderedTable = new StringBuilder();
+    if(headers != null) {
+       renderedTable.append(renderHeader(headers));
     }
 
-    while(it.hasNext()) {
-      entry = it.next();
-      appendRow(entry.getKey(), entry.getValue());
+    for (String[] row : data) {
+        renderedTable.append(renderRow(row));
     }
 
     return renderedTable.toString();
   }
 
-  public Table addHeaders (String a, String b) {
-    header = new String[]{a, b};
+  public Table addHeaders (String[] headers) {
+    this.headers = headers;
     return this;
   }
 
-  private void appendHeader (Object key, Object value) {
-    appendLine(key.toString(), value.toString(), "|=");
+  private String renderHeader(String[] header) {
+      return renderLine(header, "|=");
   }
 
-  private void appendRow (Object key, Object value) {
-    appendLine(key.toString(), value.toString(), "|");
+  private String renderRow(String[] row) {
+      return renderLine(row, "|");
   }
 
-  private void appendLine(String a, String b, String delimiter) {
-//    renderedTable.append("\t");
-    renderedTable.append(delimiter).append(" ").append(a).append(" ");
-    renderedTable.append(delimiter).append(" ").append(b).append(" ");
-    renderedTable.append("|\n");
+  private String renderLine(String[] data, String delimiter) {
+    StringBuilder line = new StringBuilder();
+    for (String e : data) {
+        line.append(delimiter).append(" ").append(e).append(" ");
+    }
+    line.append("|\n");
+    return line.toString();
   }
 }
 

@@ -1,5 +1,7 @@
 package com.github.qbek.bricks;
 
+import com.github.qbek.diagram.SequenceDiagram;
+
 /**
  * Created by jakub on 09/10/16.
  */
@@ -8,22 +10,18 @@ public class Message {
     private String message;
     private String from;
     private String to;
-    private String type;
+    private String type = "->";
+
+    SequenceDiagram diagram;
 
     private String NEW_LINE = "\n";
 
-    public Message (String message) {
+
+    public Message (String message, String from, String to, SequenceDiagram diagram) {
         this.message = message;
-    }
-
-    public Message from (String from) {
         this.from = from;
-        return this;
-    }
-
-    public Message to (String to) {
         this.to = to;
-        return this;
+        this.diagram = diagram;
     }
 
     public Message asRequest () {
@@ -40,4 +38,11 @@ public class Message {
         return from.concat(type).concat(to).concat(":").concat(message).concat(NEW_LINE);
     }
 
+    public Note withNote(String note, Note.On side) {
+        return this.diagram.addNote(note, side);
+    }
+
+    public Note withNote(Note.On side) {
+        return this.diagram.addNote(side);
+    }
 }
