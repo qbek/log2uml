@@ -2,19 +2,23 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.qbek</groupId>
+  <groupId>com.github.qbek</groupId>
   <artifactId>log2uml</artifactId>
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>log2uml</name>
   <url>http://maven.apache.org</url>
-
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
-
   <dependencies>
+    <dependency>
+      <groupId>net.sourceforge.plantuml</groupId>
+      <artifactId>plantuml</artifactId>
+      <version>8050</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -28,9 +32,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>net.sourceforge.plantuml</groupId>
-      <artifactId>plantuml</artifactId>
-      <version>8047</version>
+      <groupId>com.tngtech.jgiven</groupId>
+      <artifactId>jgiven-junit</artifactId>
+      <version>0.12.1</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
+
 </project>
