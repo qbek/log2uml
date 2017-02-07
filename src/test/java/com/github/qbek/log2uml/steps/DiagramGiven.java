@@ -1,4 +1,4 @@
-package com.github.qbek.steps;
+package com.github.qbek.log2uml.steps;
 
 import com.tngtech.jgiven.Stage;
 

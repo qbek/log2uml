@@ -1,6 +1,6 @@
-package com.github.qbek.bricks;
+package com.github.qbek.log2uml.bricks;
 
-import com.github.qbek.bricks.glues.Table;
+import com.github.qbek.log2uml.bricks.glues.Table;
 
 import java.util.ArrayList;
 import java.util.List;

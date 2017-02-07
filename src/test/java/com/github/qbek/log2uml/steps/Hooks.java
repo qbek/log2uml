@@ -1,6 +1,6 @@
-package com.github.qbek.steps;
+package com.github.qbek.log2uml.steps;
 
-import com.github.qbek.diagram.SequenceDiagram;
+import com.github.qbek.log2uml.diagram.SequenceDiagram;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

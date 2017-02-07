@@ -1,6 +1,6 @@
-package com.github.qbek.steps;
+package com.github.qbek.log2uml.steps;
 
-import com.github.qbek.diagram.SequenceDiagram;
+import com.github.qbek.log2uml.diagram.SequenceDiagram;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.ScenarioRule;
 

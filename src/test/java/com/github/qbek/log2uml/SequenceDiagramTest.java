@@ -1,8 +1,8 @@
-package com.github.qbek;
+package com.github.qbek.log2uml;
 
-import com.github.qbek.steps.DiagramGiven;
-import com.github.qbek.steps.DiagramThen;
-import com.github.qbek.steps.DiagramWhen;
+import com.github.qbek.log2uml.steps.DiagramGiven;
+import com.github.qbek.log2uml.steps.DiagramThen;
+import com.github.qbek.log2uml.steps.DiagramWhen;
 import com.tngtech.jgiven.junit.ScenarioTest;
 import org.junit.Test;
 

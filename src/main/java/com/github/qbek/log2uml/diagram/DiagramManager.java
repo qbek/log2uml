@@ -1,4 +1,4 @@
-package com.github.qbek.diagram;
+package com.github.qbek.log2uml.diagram;
 
 import java.util.HashMap;
 

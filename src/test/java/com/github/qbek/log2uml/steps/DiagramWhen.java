@@ -1,12 +1,11 @@
-package com.github.qbek.steps;
+package com.github.qbek.log2uml.steps;
 
-import com.github.qbek.bricks.Message;
-import com.github.qbek.diagram.SequenceDiagram;
+import com.github.qbek.log2uml.bricks.Message;
+import com.github.qbek.log2uml.diagram.SequenceDiagram;
+import com.github.qbek.log2uml.bricks.Note;
 import com.tngtech.jgiven.Stage;
 
 import java.util.ArrayList;
-
-import static com.github.qbek.bricks.Note.On;
 
 /**
  * Created by jakub on 30/11/2016.
@@ -41,26 +40,26 @@ public class DiagramWhen extends Stage<DiagramWhen> {
     }
 
     public DiagramWhen john_adds_note_on_left_to_message(String note) {
-        msgUnderConstruction.withNote(note, On.LEFT);
+        msgUnderConstruction.withNote(note, Note.On.LEFT);
         return self();
     }
 
     public DiagramWhen john_adds_note_on_left_to_message() {
-        msgUnderConstruction.withNote(On.LEFT);
+        msgUnderConstruction.withNote(Note.On.LEFT);
         return self();
     }
 
     public DiagramWhen adds_note_on_right_to_message(String note) {
-        msgUnderConstruction.withNote(note, On.RIGHT);
+        msgUnderConstruction.withNote(note, Note.On.RIGHT);
         return self();
     }
 
 
     public void john_adds_note_with_table(ArrayList table) {
-        msgUnderConstruction.withNote(On.LEFT).addTable(table);
+        msgUnderConstruction.withNote(Note.On.LEFT).addTable(table);
     }
 
     public void john_adds_note_with_table_with_header(ArrayList table, String[] header) {
-        msgUnderConstruction.withNote(On.RIGHT).addTableWithHeader(table, header);
+        msgUnderConstruction.withNote(Note.On.RIGHT).addTableWithHeader(table, header);
     }
 }

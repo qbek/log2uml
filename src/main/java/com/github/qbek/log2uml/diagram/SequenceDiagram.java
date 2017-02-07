@@ -1,7 +1,7 @@
-package com.github.qbek.diagram;
+package com.github.qbek.log2uml.diagram;
 
-import com.github.qbek.bricks.Message;
-import com.github.qbek.bricks.Note;
+import com.github.qbek.log2uml.bricks.Message;
+import com.github.qbek.log2uml.bricks.Note;
 
 /**
  * Created by jakub on 03/09/16.

@@ -1,6 +1,6 @@
-package com.github.qbek.bricks;
+package com.github.qbek.log2uml.bricks;
 
-import com.github.qbek.diagram.SequenceDiagram;
+import com.github.qbek.log2uml.diagram.SequenceDiagram;
 
 /**
  * Created by jakub on 09/10/16.

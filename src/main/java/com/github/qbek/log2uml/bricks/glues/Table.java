@@ -1,4 +1,4 @@
-package com.github.qbek.bricks.glues;
+package com.github.qbek.log2uml.bricks.glues;
 
 import java.util.ArrayList;
 
