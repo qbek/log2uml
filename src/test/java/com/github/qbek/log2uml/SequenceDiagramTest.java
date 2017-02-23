@@ -13,39 +13,39 @@ public class SequenceDiagramTest extends ScenarioTest<DiagramGiven, DiagramWhen,
 
     @Test
     public void diagramHasATitle () throws IOException {
-        when().john_creates_diagram("Title_test");
+        when().john_creates_diagram_with_title("Title_test");
         then().rendered_diagram_starts_with_opening_tag()
-                .rendered_diagram_has_in_line("title ".concat("Title_test"), 2)
+                .rendered_diagram_has_text_$_on_line_$("title ".concat("Title_test"), 2)
                 .rendered_diagram_ends_with_closing_tag();
 
     }
 
     @Test
     public void diagramRequestAndRespons () throws IOException {
-        when().john_creates_diagram("Request_and_response")
+        when().john_creates_diagram_with_title("Request_and_response")
                 .john_adds_request_message_$_form_$_to_$("test request", "sender", "recipient")
-                .john_adds_response_message_to_diagram("test response", "recipient", "sender");
+                .john_adds_response_message_$_from_$_to_$("test response", "recipient", "sender");
 
 
-        then().rendered_diagram_has_in_line("sender->recipient:test request", 3)
-                .rendered_diagram_has_in_next_line("recipient-->sender:test response");
+        then().rendered_diagram_has_text_$_on_line_$("sender->recipient:test request", 3)
+                .rendered_diagram_has_text_$_on_next_line("recipient-->sender:test response");
 
     }
 
     @Test
     public void diagramMessageCanHaveNote() throws IOException {
-        when().john_creates_diagram("Message_notes")
+        when().john_creates_diagram_with_title("Message_notes")
                 .john_adds_sample_message()
-                .john_adds_note_on_left_to_message("Test note on left")
+                .john_adds_note_$_on_left_to_message("Test note on left")
                 .john_adds_sample_message()
-                .adds_note_on_right_to_message("Test note on right");
+                .john_adds_note_$_on_right_to_message("Test note on right");
 
-        then().rendered_diagram_has_in_line("note left", 4)
-                .rendered_diagram_has_in_next_line("Test note on left")
-                .rendered_diagram_has_in_next_line("end note")
-                .rendered_diagram_has_in_line("note right", 8)
-                .rendered_diagram_has_in_next_line("Test note on right")
-                .rendered_diagram_has_in_next_line("end note");
+        then().rendered_diagram_has_text_$_on_line_$("note left", 4)
+                .rendered_diagram_has_text_$_on_next_line("Test note on left")
+                .rendered_diagram_has_text_$_on_next_line("end note")
+                .rendered_diagram_has_text_$_on_line_$("note right", 8)
+                .rendered_diagram_has_text_$_on_next_line("Test note on right")
+                .rendered_diagram_has_text_$_on_next_line("end note");
 
     }
 
@@ -56,13 +56,13 @@ public class SequenceDiagramTest extends ScenarioTest<DiagramGiven, DiagramWhen,
         table.add(new String[]{"row 2.a", "row 2.b", "row 2.c"});
         table.add(new String[]{"row 3.a", "row 3.b", "row 3.c"});
 
-        when().john_creates_diagram("Note_can_have_table")
+        when().john_creates_diagram_with_title("Note_can_have_table")
                 .john_adds_sample_message()
                 .john_adds_note_with_table(table);
 
-        then().rendered_diagram_has_in_line("| row 1.a | row 1.b | row 1.c |", 5)
-            .rendered_diagram_has_in_next_line("| row 2.a | row 2.b | row 2.c |")
-            .rendered_diagram_has_in_next_line("| row 3.a | row 3.b | row 3.c |");
+        then().rendered_diagram_has_text_$_on_line_$("| row 1.a | row 1.b | row 1.c |", 5)
+            .rendered_diagram_has_text_$_on_next_line("| row 2.a | row 2.b | row 2.c |")
+            .rendered_diagram_has_text_$_on_next_line("| row 3.a | row 3.b | row 3.c |");
     }
 
     @Test
@@ -70,11 +70,11 @@ public class SequenceDiagramTest extends ScenarioTest<DiagramGiven, DiagramWhen,
         ArrayList<String[]> table = new ArrayList<String[]>();
         table.add(new String[]{"row 1.a", "row 1.b", "row 1.c"});
 
-        when().john_creates_diagram("Note_can_have_table_with_header")
+        when().john_creates_diagram_with_title("Note_can_have_table_with_header")
                 .john_adds_sample_message()
                 .john_adds_note_with_table_with_header(table, new String[]{"header 1", "header 2", "header 3"});
 
-        then().rendered_diagram_has_in_line("|= header 1 |= header 2 |= header 3 |", 5)
-                .rendered_diagram_has_in_next_line("| row 1.a | row 1.b | row 1.c |");
+        then().rendered_diagram_has_text_$_on_line_$("|= header 1 |= header 2 |= header 3 |", 5)
+                .rendered_diagram_has_text_$_on_next_line("| row 1.a | row 1.b | row 1.c |");
     }
 }

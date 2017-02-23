@@ -1,7 +1,8 @@
 package com.github.qbek.log2uml.steps;
 
-import com.github.qbek.log2uml.diagram.SequenceDiagram;
+import com.github.qbek.log2uml.assets.DiagramUnderTest;
 import com.tngtech.jgiven.Stage;
+import com.tngtech.jgiven.annotation.Quoted;
 import com.tngtech.jgiven.annotation.ScenarioRule;
 
 import java.util.ArrayList;
@@ -27,13 +28,13 @@ public class DiagramThen extends Stage<DiagramThen> {
         return self();
     }
 
-    public DiagramThen rendered_diagram_has_in_line(String expected, int line) {
+    public DiagramThen rendered_diagram_has_text_$_on_line_$(@Quoted String expected, int line) {
         lineIndex = line - 1;
         lineUnderIndexContains(expected);
         return self();
     }
 
-    public DiagramThen rendered_diagram_has_in_next_line(String expected) {
+    public DiagramThen rendered_diagram_has_text_$_on_next_line(@Quoted String expected) {
         lineIndex += 1;
         lineUnderIndexContains(expected);
         return self();
@@ -41,7 +42,7 @@ public class DiagramThen extends Stage<DiagramThen> {
 
     private void lineUnderIndexContains (String expected) {
         if(rendered == null) {
-            rendered = new ArrayList<String>(Arrays.asList(SequenceDiagram.getInstance().render().split("\n")));
+            rendered = new ArrayList<String>(Arrays.asList(DiagramUnderTest.getDUT().render().split("\n")));
         }
         assertThat(rendered.get(lineIndex)).isEqualTo(expected);
     }
