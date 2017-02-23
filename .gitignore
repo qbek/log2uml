@@ -1,1 +1,9 @@
 target
+.idea
+.settings
+.vscode
+*.iml
+.classpath
+.project
+jgiven-reports/
+plantuml.jar
