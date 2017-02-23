@@ -5,7 +5,6 @@ import net.sourceforge.plantuml.SourceStringReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -14,8 +13,8 @@ import java.util.List;
 public abstract class Diagram {
 
 
-    protected static StringBuilder rendered;
-    protected List diagramElements = new ArrayList<Object>();
+    protected StringBuilder rendered;
+    protected ArrayList<Object> diagramElements = new ArrayList<>();
     protected String title;
 
 
@@ -38,8 +37,8 @@ public abstract class Diagram {
     }
 
     public String render () {
-        for (int i=0; i < diagramElements.size();i++) {
-            rendered.append(diagramElements.get(i));
+        for (Object diagramElement : diagramElements) {
+            rendered.append(diagramElement);
         }
         rendered.append("@enduml");
         return rendered.toString();

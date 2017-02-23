@@ -1,5 +1,6 @@
 package com.github.qbek.log2uml.diagram;
 
+import com.github.qbek.log2uml.bricks.Actors;
 import com.github.qbek.log2uml.bricks.Message;
 import com.github.qbek.log2uml.bricks.Note;
 
@@ -11,17 +12,14 @@ public class SequenceDiagram extends Diagram {
     private static String END_NOTE = "end note";
     private static String START_NOTE = "note left";
 
-    static SequenceDiagram instance;
+    public Actors actors;
 
     private SequenceDiagram(String title) {
         super(title);
     }
 
-    public static SequenceDiagram getInstance() { return instance; }
-
-    public static SequenceDiagram createNew(String title) {
-        instance = new SequenceDiagram(title);
-        return instance;
+    public static SequenceDiagram withTitle(String title) {
+        return new SequenceDiagram(title);
     }
 
     private Message addMessage(String message, String from, String to) {
