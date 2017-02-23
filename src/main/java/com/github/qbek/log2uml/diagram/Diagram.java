@@ -13,21 +13,13 @@ import java.util.ArrayList;
 public abstract class Diagram {
 
 
-    protected StringBuilder rendered;
     protected ArrayList<Object> diagramElements = new ArrayList<>();
     protected String title;
 
 
-
-    protected void log (String log) {
-        rendered.append(log + "\n");
-    }
-
     public Diagram (String title) {
-        rendered = new StringBuilder();
+
         this.title = title;
-        log("@startuml");
-        log("title " + title);
     }
 
     public void save (FileOutputStream outputFile) throws IOException {
@@ -37,6 +29,9 @@ public abstract class Diagram {
     }
 
     public String render () {
+        StringBuilder rendered = new StringBuilder();
+        rendered.append("@startuml\n");
+        rendered.append("title ").append(title).append("\n");
         for (Object diagramElement : diagramElements) {
             rendered.append(diagramElement);
         }
@@ -47,4 +42,6 @@ public abstract class Diagram {
     public String getTitle() {
         return title;
     }
+
+
 }
