@@ -1,9 +1,9 @@
 package com.github.qbek.log2uml.steps;
 
-import com.github.qbek.log2uml.assets.DiagramUnderTest;
 import com.github.qbek.log2uml.diagram.SequenceDiagram;
 import com.github.qbek.log2uml.participants.ParticipantGroup;
 import com.tngtech.jgiven.Stage;
+import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.Quoted;
 
 /**
@@ -13,28 +13,27 @@ public class ParticipantActions extends Stage<ParticipantActions> {
 
     private ParticipantGroup groupUnderTest;
 
+    @ExpectedScenarioState
+    SequenceDiagram diagramUnderTest;
+
     public ParticipantActions john_declares_actor_$ (@Quoted String name) {
-        SequenceDiagram diagram = DiagramUnderTest.getDUT();
-        diagram.declareActor(name);
+        diagramUnderTest.declareActor(name);
         return self();
     }
 
     public ParticipantActions john_declares_actor_$_renamedTo_$ (@Quoted String name, @Quoted String rename) {
-        SequenceDiagram diagram = DiagramUnderTest.getDUT();
-        diagram.declareActor(name).renameTo(rename);
+        diagramUnderTest.declareActor(name).renameTo(rename);
         return self();
     }
 
     public ParticipantActions john_declares_participant_$ (@Quoted String name) {
-        SequenceDiagram diagram = DiagramUnderTest.getDUT();
-        diagram.declareParticipant(name);
+        diagramUnderTest.declareParticipant(name);
         return self();
     }
 
     public ParticipantActions john_declares_participant_group_$ (@Quoted String name) {
         groupUnderTest = SequenceDiagram.createParticipantGroup(name);
-        SequenceDiagram diagram = DiagramUnderTest.getDUT();
-        diagram.declareParticipantGroup(groupUnderTest);
+        diagramUnderTest.declareParticipantGroup(groupUnderTest);
         return self();
     }
 

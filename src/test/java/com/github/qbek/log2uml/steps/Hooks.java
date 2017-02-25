@@ -7,8 +7,8 @@ import java.io.IOException;
  */
 public class Hooks {
 
-//    public void after() throws IOException {
-    public void no() throws IOException {
+    public void after() throws IOException {
+//    public void no() throws IOException {
 //        diagram.save(new FileOutputStream(diagram.getTitle() + ".png"));
     }
 }
