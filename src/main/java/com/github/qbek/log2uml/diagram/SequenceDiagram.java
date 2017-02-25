@@ -3,7 +3,8 @@ package com.github.qbek.log2uml.diagram;
 import com.github.qbek.log2uml.bricks.Message;
 import com.github.qbek.log2uml.bricks.Note;
 import com.github.qbek.log2uml.participants.Participant;
-import com.github.qbek.log2uml.participants.ParticipantsDeclarations;
+import com.github.qbek.log2uml.participants.ParticipantGroup;
+import com.github.qbek.log2uml.participants.ParticipantDeclarations;
 
 /**
  * Created by jakub on 03/09/16.
@@ -13,11 +14,11 @@ public class SequenceDiagram extends Diagram {
     private static String END_NOTE = "end note";
     private static String START_NOTE = "note left";
 
-    private ParticipantsDeclarations participants;
+    private ParticipantDeclarations participants;
 
     private SequenceDiagram(String title) {
         super(title);
-        participants = new ParticipantsDeclarations();
+        participants = new ParticipantDeclarations();
         diagramElements.add(participants);
     }
 
@@ -53,5 +54,21 @@ public class SequenceDiagram extends Diagram {
 
     public Participant declareActor (String name) {
         return participants.declareActor(name);
+    }
+
+    public Participant declareParticipant (String name) {
+        return participants.declareParticipant(name);
+    }
+
+    public static ParticipantGroup createParticipantGroup (String name) {
+        return new ParticipantGroup(name);
+    }
+
+    public void declareParticipantGroup (ParticipantGroup group) {
+        participants.declareGroup(group);
+    }
+
+    public static Participant createActor (String name) {
+        return new Participant(name, Participant.TYPE.actor);
     }
 }

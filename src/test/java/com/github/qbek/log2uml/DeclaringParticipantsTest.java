@@ -18,8 +18,31 @@ public class DeclaringParticipantsTest extends ScenarioTest<Preconditions, Parti
         given().jonh_has_diagram();
         when().john_declares_actor_$("Unicorn");
         then().rendered_diagram_contains_line_$("actor \"Unicorn\"");
+    }
 
+    @Test
+    public void johnCanDeclareStandardParticipant () {
+        given().jonh_has_diagram();
+        when().john_declares_participant_$("No Name");
+        then().rendered_diagram_contains_line_$("participant \"No Name\"");
+    }
+
+    @Test
+    public void johnCanDeclareRenamedParticipant () {
+        given().jonh_has_diagram();
         when().john_declares_actor_$_renamedTo_$("TwoFace", "HappySide");
         then().rendered_diagram_contains_line_$("actor \"TwoFace\" as \"HappySide\"");
+    }
+
+    @Test
+    public void johnCarCreateGroupOfParticipants () {
+        given().jonh_has_diagram();
+        when().john_declares_participant_group_$("VillagePeople")
+            .and().he_adds_actor_$_to_group("Sam")
+            .and().he_adds_actor_$_to_group("Jessica");
+        then().rendered_diagram_contains_line_$("box \"VillagePeople\"")
+                .and().rendered_diagram_contains_on_next_line_$("actor \"Sam\"")
+                .and().rendered_diagram_contains_on_next_line_$("actor \"Jessica\"")
+                .and().rendered_diagram_contains_on_next_line_$("end box");
     }
 }

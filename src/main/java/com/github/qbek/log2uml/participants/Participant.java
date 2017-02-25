@@ -3,19 +3,19 @@ package com.github.qbek.log2uml.participants;
 /**
  * Created by Jakub Szewczyk on 23/02/2017.
  */
-public class Participant {
+public class Participant extends ParticipantDeclaration {
 
-    private String name;
+
     private String rename = "";
     private TYPE type;
 
     public static enum TYPE {
-        actor
+        participant, actor
     }
 
-    Participant (String name, TYPE type) {
+    public Participant (String name, TYPE type) {
+        super(name);
         this.type = type;
-        this.name = String.format("\"%s\"", name);
     }
 
     public void renameTo (String rename) {
