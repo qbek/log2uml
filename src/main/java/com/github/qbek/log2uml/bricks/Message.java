@@ -37,12 +37,4 @@ public class Message {
     public String toString() {
         return from.concat(type).concat(to).concat(":").concat(message).concat(NEW_LINE);
     }
-
-    public Note withNote(String note, Note.On side) {
-        return this.diagram.addNote(note, side);
-    }
-
-    public Note withNote(Note.On side) {
-        return this.diagram.addNote(side);
-    }
 }

@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class Note {
 
-    String openTag = "note";
-    String closeTag = "end note";
+    private static String OPENING_TAG = "note";
+    private static String CLOSING_TAG = "end note";
     private List<Object> elements = new ArrayList();
 
     public Note(String text, On side) {
@@ -21,9 +21,9 @@ public class Note {
 
     private void setOpeningTag(On side) {
         if (side == On.LEFT) {
-            openTag = openTag.concat(" left");
+            OPENING_TAG = OPENING_TAG.concat(" left");
         } else {
-            openTag = openTag.concat(" right");
+            OPENING_TAG = OPENING_TAG.concat(" right");
         }
     }
 
@@ -51,14 +51,14 @@ public class Note {
     public String toString() {
         StringBuilder render = new StringBuilder();
         //append start tag
-        render.append(openTag).append("\n");
+        render.append(OPENING_TAG).append("\n");
 
         for (Object element: elements) {
             render.append(element.toString()).append("\n");
         }
 
         //append end tag
-        render.append(closeTag).append("\n");
+        render.append(CLOSING_TAG).append("\n");
         return render.toString();
     }
 

@@ -15,28 +15,28 @@ public class DeclaringParticipantsTest extends ScenarioTest<Preconditions, Parti
 
     @Test
     public void johnCanDeclarteActorParticipant () throws IOException {
-        given().jonh_has_diagram();
+        given().john_has_diagram();
         when().john_declares_actor_$("Unicorn");
         then().rendered_diagram_contains_line_$("actor \"Unicorn\"");
     }
 
     @Test
     public void johnCanDeclareStandardParticipant () {
-        given().jonh_has_diagram();
+        given().john_has_diagram();
         when().john_declares_participant_$("No Name");
         then().rendered_diagram_contains_line_$("participant \"No Name\"");
     }
 
     @Test
     public void johnCanDeclareRenamedParticipant () {
-        given().jonh_has_diagram();
+        given().john_has_diagram();
         when().john_declares_actor_$_renamedTo_$("TwoFace", "HappySide");
         then().rendered_diagram_contains_line_$("actor \"TwoFace\" as \"HappySide\"");
     }
 
     @Test
     public void johnCarCreateGroupOfParticipants () {
-        given().jonh_has_diagram();
+        given().john_has_diagram();
         when().john_declares_participant_group_$("VillagePeople")
             .and().he_adds_actor_$_to_group("Sam")
             .and().he_adds_actor_$_to_group("Jessica");
