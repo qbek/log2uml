@@ -2,6 +2,8 @@ package com.github.qbek.log2uml.steps;
 
 import com.github.qbek.log2uml.diagram.SequenceDiagram;
 import com.github.qbek.log2uml.elements.message.DefineMessage;
+import com.github.qbek.log2uml.elements.message.DefineMessageGroup;
+import com.github.qbek.log2uml.elements.message.MessageGroup;
 import com.github.qbek.log2uml.elements.message.MessageType;
 import com.github.qbek.log2uml.elements.note.DefineNote;
 import com.github.qbek.log2uml.elements.note.NotePosition;
@@ -18,6 +20,8 @@ public class MessageActions extends Stage<MessageActions> {
 
     @ExpectedScenarioState
     SequenceDiagram diagramUnderTest;
+
+    MessageGroup msgGroupUnderTest;
 
     public MessageActions john_adds_request_message_$_form_$_to_$(@Quoted String msg, String sender, String recipient) {
         diagramUnderTest.add(
@@ -55,5 +59,16 @@ public class MessageActions extends Stage<MessageActions> {
 
     public void john_adds_note_with_table_with_header(ArrayList table, String[] header) {
 //        diagramUnderTest.addNote(Note.On.RIGHT).addTableWithHeader(table, header);
+    }
+
+    public MessageActions john_adds_the_message_group_$ (String name) {
+        msgGroupUnderTest = DefineMessageGroup.name(name);
+        diagramUnderTest.add(msgGroupUnderTest);
+        return self();
+    }
+
+    public MessageActions john_adds_sample_request_to_the_group () {
+        msgGroupUnderTest.add(DefineMessage.form("sender").to("recipient").text("sample request").type(MessageType.REQUEST));
+        return self();
     }
 }

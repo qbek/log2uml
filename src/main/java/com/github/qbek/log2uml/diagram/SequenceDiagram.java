@@ -41,7 +41,6 @@ public class SequenceDiagram extends Diagram {
     public static Participant createActor (String name) {
         return new Participant(name, Participant.TYPE.actor);
     }
-
     public SequenceDiagram add (Element el) {
         elements.add(el);
         return this;
