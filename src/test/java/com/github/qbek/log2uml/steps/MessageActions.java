@@ -1,7 +1,9 @@
 package com.github.qbek.log2uml.steps;
 
-import com.github.qbek.log2uml.bricks.Note;
 import com.github.qbek.log2uml.diagram.SequenceDiagram;
+import com.github.qbek.log2uml.elements.Note;
+import com.github.qbek.log2uml.elements.message.DefineMessage;
+import com.github.qbek.log2uml.elements.message.MessageType;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.Quoted;
@@ -17,12 +19,16 @@ public class MessageActions extends Stage<MessageActions> {
     SequenceDiagram diagramUnderTest;
 
     public MessageActions john_adds_request_message_$_form_$_to_$(@Quoted String msg, String sender, String recipient) {
-        diagramUnderTest.addRequest(msg, sender, recipient);
+        diagramUnderTest.add(
+                DefineMessage.form(sender).to(recipient).text(msg).type(MessageType.REQUEST)
+        );
         return self();
     }
 
     public MessageActions john_adds_response_message_$_from_$_to_$(@Quoted String msg, String sender, String recipient) {
-        diagramUnderTest.addResponse(msg, sender, recipient);
+        diagramUnderTest.add(
+                DefineMessage.form(sender).to(recipient).text(msg).type(MessageType.RESPONSE)
+        );
         return self();
     }
 

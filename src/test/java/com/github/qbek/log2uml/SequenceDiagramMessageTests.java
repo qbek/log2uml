@@ -21,7 +21,7 @@ public class SequenceDiagramMessageTests extends ScenarioTest<Preconditions, Mes
     }
 
     @Test
-    public void diagramRequestAndRespons () throws IOException {
+    public void diagramRequestAndResponse () throws IOException {
         given().jonh_has_diagram();
         when().john_adds_request_message_$_form_$_to_$("test request", "sender", "recipient")
             .and().john_adds_response_message_$_from_$_to_$("test response", "recipient", "sender");
