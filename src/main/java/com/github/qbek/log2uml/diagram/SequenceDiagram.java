@@ -1,7 +1,6 @@
 package com.github.qbek.log2uml.diagram;
 
 import com.github.qbek.log2uml.elements.Element;
-import com.github.qbek.log2uml.elements.Note;
 import com.github.qbek.log2uml.participants.Participant;
 import com.github.qbek.log2uml.participants.ParticipantDeclarations;
 import com.github.qbek.log2uml.participants.ParticipantGroup;
@@ -22,18 +21,6 @@ public class SequenceDiagram extends Diagram {
         return new SequenceDiagram(title);
     }
 
-
-    public Note addNote(String text, Note.On side) {
-        Note note = new Note(text, side);
-//        elements.add(note);
-        return note;
-    }
-
-    public Note addNote(Note.On side) {
-        Note note = new Note(side);
-//        elements.add(note);
-        return note;
-    }
 
     public Participant declareActor (String name) {
         return participants.declareActor(name);

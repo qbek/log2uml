@@ -1,9 +1,10 @@
 package com.github.qbek.log2uml.steps;
 
 import com.github.qbek.log2uml.diagram.SequenceDiagram;
-import com.github.qbek.log2uml.elements.Note;
 import com.github.qbek.log2uml.elements.message.DefineMessage;
 import com.github.qbek.log2uml.elements.message.MessageType;
+import com.github.qbek.log2uml.elements.note.DefineNote;
+import com.github.qbek.log2uml.elements.note.NotePosition;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.Quoted;
@@ -33,22 +34,26 @@ public class MessageActions extends Stage<MessageActions> {
     }
 
     public MessageActions john_adds_note_$_on_left_to_message(@Quoted String note) {
-        diagramUnderTest.addNote(note, Note.On.LEFT);
+        diagramUnderTest.add(
+                DefineNote.text(note).position(NotePosition.LEFT)
+        );
         return self();
     }
 
 
     public MessageActions john_adds_note_$_on_right_to_message(@Quoted String note) {
-        diagramUnderTest.addNote(note, Note.On.RIGHT);
+        diagramUnderTest.add(
+                DefineNote.text(note).position(NotePosition.RIGHT)
+        );
         return self();
     }
 
 
     public void john_adds_note_with_table(ArrayList table) {
-        diagramUnderTest.addNote(Note.On.LEFT).addTable(table);
+//        diagramUnderTest.addNote(Note.On.LEFT).addTable(table);
     }
 
     public void john_adds_note_with_table_with_header(ArrayList table, String[] header) {
-        diagramUnderTest.addNote(Note.On.RIGHT).addTableWithHeader(table, header);
+//        diagramUnderTest.addNote(Note.On.RIGHT).addTableWithHeader(table, header);
     }
 }
