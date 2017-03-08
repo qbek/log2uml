@@ -1,10 +1,14 @@
 package com.github.qbek.log2uml.steps;
 
 import com.github.qbek.log2uml.diagram.SequenceDiagram;
+import com.github.qbek.log2uml.participants.DefineParticipant;
+import com.github.qbek.log2uml.participants.DefineParticipantGroup;
 import com.github.qbek.log2uml.participants.ParticipantGroup;
+import com.github.qbek.log2uml.participants.ParticipantType;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.Quoted;
+
 
 /**
  * Created by Jakub Szewczyk on 23/02/2017.
@@ -17,28 +21,30 @@ public class ParticipantActions extends Stage<ParticipantActions> {
     SequenceDiagram diagramUnderTest;
 
     public ParticipantActions john_declares_actor_$ (@Quoted String name) {
-        diagramUnderTest.declareActor(name);
+        diagramUnderTest.declare(DefineParticipant.name(name).type(ParticipantType.ACTOR));
         return self();
     }
 
     public ParticipantActions john_declares_actor_$_renamedTo_$ (@Quoted String name, @Quoted String rename) {
-        diagramUnderTest.declareActor(name).renameTo(rename);
+        diagramUnderTest.declare(DefineParticipant.name(name).renderAs(rename).type(ParticipantType.ACTOR));
         return self();
     }
 
     public ParticipantActions john_declares_participant_$ (@Quoted String name) {
-        diagramUnderTest.declareParticipant(name);
+        diagramUnderTest.declare(DefineParticipant.name(name).type(ParticipantType.PARTICIPANT));
         return self();
     }
 
     public ParticipantActions john_declares_participant_group_$ (@Quoted String name) {
-        groupUnderTest = SequenceDiagram.createParticipantGroup(name);
-        diagramUnderTest.declareParticipantGroup(groupUnderTest);
+        groupUnderTest = DefineParticipantGroup.name(name);
+        diagramUnderTest.declare(groupUnderTest);
         return self();
     }
 
     public ParticipantActions he_adds_actor_$_to_group (String name) {
-        groupUnderTest.declareMember(SequenceDiagram.createActor(name));
+        groupUnderTest.declareMember(
+                DefineParticipant.name(name).type(ParticipantType.ACTOR)
+        );
         return self();
     }
 }

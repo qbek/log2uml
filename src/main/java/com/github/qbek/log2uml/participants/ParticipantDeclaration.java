@@ -10,5 +10,5 @@ public abstract class ParticipantDeclaration {
         this.name = String.format("\"%s\"", name);
     }
 
-
+    public abstract String render();
 }

@@ -10,19 +10,21 @@ public class ParticipantGroup  extends ParticipantDeclaration {
 
     private List<ParticipantDeclaration> members = new ArrayList<>();
 
-    public ParticipantGroup (String name) {
+    ParticipantGroup (String name) {
         super(name);
+    }
+
+    @Override
+    public String render () {
+        StringBuilder output = new StringBuilder("box ").append(name).append("\n");
+        for (ParticipantDeclaration member : members) {
+            output.append(member.render());
+        }
+        return output.append("end box\n").toString();
     }
 
     public ParticipantDeclaration declareMember (ParticipantDeclaration member) {
         members.add(member);
         return member;
-    }
-    public String toString() {
-        StringBuilder output = new StringBuilder("box ").append(name).append("\n");
-        for (ParticipantDeclaration member : members) {
-            output.append(member);
-        }
-        return output.append("end box\n").toString();
     }
 }

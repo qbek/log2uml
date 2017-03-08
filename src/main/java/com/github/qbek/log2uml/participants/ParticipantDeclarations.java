@@ -1,37 +1,27 @@
 package com.github.qbek.log2uml.participants;
 
+import com.github.qbek.log2uml.elements.Element;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Jakub Szewczyk on 23/02/2017.
  */
-public class ParticipantDeclarations {
+public class ParticipantDeclarations implements Element {
 
     private List<ParticipantDeclaration> declarations = new ArrayList<>();
 
-    public Participant declareActor (String name) {
-        Participant a = new Participant(name, Participant.TYPE.actor);
-        declarations.add(a);
-        return a;
+    public void add (ParticipantDeclaration participant) {
+        declarations.add(participant);
     }
 
-    public Participant declareParticipant (String name) {
-        Participant p = new Participant(name, Participant.TYPE.participant);
-        declarations.add(p);
-        return p;
-    }
-
-    public String toString () {
+    @Override
+    public String render () {
         StringBuilder output = new StringBuilder();
         for (ParticipantDeclaration declaration : declarations) {
-            output.append(declaration);
+            output.append(declaration.render());
         }
         return output.append("\n").toString();
-    }
-
-    public ParticipantGroup declareGroup (ParticipantGroup group) {
-        declarations.add(group);
-        return group;
     }
 }
