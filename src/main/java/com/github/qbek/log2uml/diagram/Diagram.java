@@ -1,5 +1,6 @@
 package com.github.qbek.log2uml.diagram;
 
+import com.github.qbek.log2uml.elements.Element;
 import net.sourceforge.plantuml.SourceStringReader;
 
 import java.io.FileOutputStream;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public abstract class Diagram {
 
 
-    protected ArrayList<Object> diagramElements = new ArrayList<>();
+    protected ArrayList<Element> elements = new ArrayList<>();
     protected String title;
 
 
@@ -32,8 +33,8 @@ public abstract class Diagram {
         StringBuilder rendered = new StringBuilder();
         rendered.append("@startuml\n");
         rendered.append("title ").append(title).append("\n");
-        for (Object diagramElement : diagramElements) {
-            rendered.append(diagramElement);
+        for (Element element : elements) {
+            rendered.append(element.render());
         }
         rendered.append("@enduml");
         return rendered.toString();

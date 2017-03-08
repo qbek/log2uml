@@ -41,8 +41,8 @@ public class DeclaringParticipantsTest extends ScenarioTest<Preconditions, Parti
             .and().he_adds_actor_$_to_group("Sam")
             .and().he_adds_actor_$_to_group("Jessica");
         then().rendered_diagram_contains_line_$("box \"VillagePeople\"")
-                .and().rendered_diagram_contains_on_next_line_$("actor \"Sam\"")
-                .and().rendered_diagram_contains_on_next_line_$("actor \"Jessica\"")
-                .and().rendered_diagram_contains_on_next_line_$("end box");
+                .and().rendered_diagram_contains_$_on_next_line("actor \"Sam\"")
+                .and().rendered_diagram_contains_$_on_next_line("actor \"Jessica\"")
+                .and().rendered_diagram_contains_$_on_next_line("end box");
     }
 }

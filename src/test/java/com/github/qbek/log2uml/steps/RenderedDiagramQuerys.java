@@ -40,7 +40,7 @@ public class RenderedDiagramQuerys extends Stage<RenderedDiagramQuerys> {
         return self();
     }
 
-    public RenderedDiagramQuerys rendered_diagram_contains_on_next_line_$ (@Quoted String expected) {
+    public RenderedDiagramQuerys rendered_diagram_contains_$_on_next_line (@Quoted String expected) {
         assertNextLine(expected);
         lastQueriedline++;
         return self();
@@ -66,4 +66,8 @@ public class RenderedDiagramQuerys extends Stage<RenderedDiagramQuerys> {
     }
 
 
+    public RenderedDiagramQuerys rendered_diagram_contains_sample_request_on_next_line () {
+        rendered_diagram_contains_line_$("sender->recipient:sample request");
+        return self();
+    }
 }

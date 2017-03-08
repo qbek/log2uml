@@ -12,9 +12,8 @@ public class Preconditions extends Stage<Preconditions> {
     @ProvidedScenarioState
     SequenceDiagram diagramUnderTest;
 
-    public void jonh_has_diagram() {
+    public void john_has_diagram () {
         diagramUnderTest = SequenceDiagram.withTitle("Awesome test diagram");
-//        DiagramUnderTest.setDUT(SequenceDiagram.withTitle("Awesome test diagram"));
     }
 
 }
