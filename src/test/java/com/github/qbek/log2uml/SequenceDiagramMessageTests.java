@@ -4,6 +4,7 @@ import com.github.qbek.log2uml.steps.MessageActions;
 import com.github.qbek.log2uml.steps.Preconditions;
 import com.github.qbek.log2uml.steps.RenderedDiagramQuerys;
 import com.tngtech.jgiven.junit.ScenarioTest;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class SequenceDiagramMessageTests extends ScenarioTest<Preconditions, Mes
             .and().rendered_diagram_contains_$_on_next_line("end note");
     }
 
-    @Test
+    @Test @Ignore
     public void noteCanHaveTable() {
         ArrayList<String[]> table = new ArrayList<String[]>();
         table.add(new String[]{"row 1.a", "row 1.b", "row 1.c"});
@@ -57,7 +58,7 @@ public class SequenceDiagramMessageTests extends ScenarioTest<Preconditions, Mes
             .and().rendered_diagram_contains_$_on_next_line("| row 3.a | row 3.b | row 3.c |");
     }
 
-    @Test
+    @Test @Ignore
     public void tableCanHaveHeader() {
         ArrayList<String[]> table = new ArrayList<String[]>();
         table.add(new String[]{"row 1.a", "row 1.b", "row 1.c"});
