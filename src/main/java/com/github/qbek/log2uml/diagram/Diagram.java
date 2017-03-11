@@ -3,8 +3,7 @@ package com.github.qbek.log2uml.diagram;
 import com.github.qbek.log2uml.elements.Element;
 import net.sourceforge.plantuml.SourceStringReader;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -23,10 +22,11 @@ public abstract class Diagram {
         this.title = title;
     }
 
-    public void save (FileOutputStream outputFile) throws IOException {
+    public void save (String filename) throws IOException {
+        FileOutputStream file = new FileOutputStream(filename.concat(".png"));
         SourceStringReader reader = new SourceStringReader(render());
 //        SourceStringReader reader = new SourceStringReader("tet");
-        String desc = reader.generateImage(outputFile);
+        String desc = reader.generateImage(file);
     }
 
     public String render () {
@@ -38,6 +38,13 @@ public abstract class Diagram {
         }
         rendered.append("@enduml");
         return rendered.toString();
+    }
+
+    public void debug (String filename) throws IOException {
+        PrintWriter file = new PrintWriter(filename.concat(".txt"));
+        file.write(render());
+        file.close();
+        System.out.println(render());
     }
 
     public String getTitle() {
