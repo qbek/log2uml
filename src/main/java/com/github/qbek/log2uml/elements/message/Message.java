@@ -14,8 +14,8 @@ public class Message implements Element {
 
     Message (String message, String from, String to, MessageType type) {
         this.message = message;
-        this.from = from;
-        this.to = to;
+        this.from = String.format("\"%s\"", from);
+        this.to = String.format("\"%s\"", to);
         this.type = type;
     }
 

@@ -26,8 +26,8 @@ public class SequenceDiagramMessageTests extends ScenarioTest<Preconditions, Mes
         given().john_has_diagram();
         when().john_adds_request_message_$_form_$_to_$("test request", "sender", "recipient")
             .and().john_adds_response_message_$_from_$_to_$("test response", "recipient", "sender");
-        then().rendered_diagram_contains_line_$("sender->recipient:test request")
-            .and().rendered_diagram_contains_$_on_next_line("recipient-->sender:test response");
+        then().rendered_diagram_contains_line_$("\"sender\"->\"recipient\":test request")
+            .and().rendered_diagram_contains_$_on_next_line("\"recipient\"-->\"sender\":test response");
     }
 
     @Test

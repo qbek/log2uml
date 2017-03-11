@@ -7,7 +7,7 @@ public abstract class ParticipantDeclaration {
     protected String name;
 
     public ParticipantDeclaration (String name) {
-        this.name = String.format("\"%s\"", name);
+        this.name = name;
     }
 
     public abstract String render();

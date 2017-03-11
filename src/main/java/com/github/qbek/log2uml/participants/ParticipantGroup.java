@@ -11,7 +11,7 @@ public class ParticipantGroup  extends ParticipantDeclaration {
     private List<ParticipantDeclaration> members = new ArrayList<>();
 
     ParticipantGroup (String name) {
-        super(name);
+        super(String.format("\"%s\"", name));
     }
 
     @Override
