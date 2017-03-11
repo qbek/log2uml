@@ -25,14 +25,14 @@ public class MessageActions extends Stage<MessageActions> {
 
     public MessageActions john_adds_request_message_$_form_$_to_$(@Quoted String msg, String sender, String recipient) {
         diagramUnderTest.add(
-                DefineMessage.form(sender).to(recipient).text(msg).type(MessageType.REQUEST)
+                DefineMessage.from(sender).to(recipient).text(msg).type(MessageType.REQUEST)
         );
         return self();
     }
 
     public MessageActions john_adds_response_message_$_from_$_to_$(@Quoted String msg, String sender, String recipient) {
         diagramUnderTest.add(
-                DefineMessage.form(sender).to(recipient).text(msg).type(MessageType.RESPONSE)
+                DefineMessage.from(sender).to(recipient).text(msg).type(MessageType.RESPONSE)
         );
         return self();
     }
@@ -68,7 +68,7 @@ public class MessageActions extends Stage<MessageActions> {
     }
 
     public MessageActions john_adds_sample_request_to_the_group () {
-        msgGroupUnderTest.add(DefineMessage.form("sender").to("recipient").text("sample request").type(MessageType.REQUEST));
+        msgGroupUnderTest.add(DefineMessage.from("sender").to("recipient").text("sample request").type(MessageType.REQUEST));
         return self();
     }
 }

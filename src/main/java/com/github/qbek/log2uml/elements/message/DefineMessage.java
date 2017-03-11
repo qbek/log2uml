@@ -9,7 +9,7 @@ public class DefineMessage {
     private String recipient;
     private String text;
 
-    public static DefineMessage form (String sender) {
+    public static DefineMessage from (String sender) {
         DefineMessage factory = new DefineMessage();
         factory.sender = sender;
         return factory;

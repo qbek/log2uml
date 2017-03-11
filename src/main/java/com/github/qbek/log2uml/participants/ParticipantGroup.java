@@ -16,7 +16,7 @@ public class ParticipantGroup  extends ParticipantDeclaration {
 
     @Override
     public String render () {
-        StringBuilder output = new StringBuilder("box ").append(name).append("\n");
+        StringBuilder output = new StringBuilder(String.format("box %s\n", name));
         for (ParticipantDeclaration member : members) {
             output.append(member.render());
         }
