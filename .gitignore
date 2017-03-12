@@ -7,3 +7,5 @@ target
 .project
 jgiven-reports/
 plantuml.jar
+*.png
+*.txt
