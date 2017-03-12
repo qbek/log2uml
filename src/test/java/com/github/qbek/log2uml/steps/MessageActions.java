@@ -1,10 +1,7 @@
 package com.github.qbek.log2uml.steps;
 
 import com.github.qbek.log2uml.diagram.SequenceDiagram;
-import com.github.qbek.log2uml.elements.message.DefineMessage;
-import com.github.qbek.log2uml.elements.message.DefineMessageGroup;
-import com.github.qbek.log2uml.elements.message.MessageGroup;
-import com.github.qbek.log2uml.elements.message.MessageType;
+import com.github.qbek.log2uml.elements.message.*;
 import com.github.qbek.log2uml.elements.note.DefineNote;
 import com.github.qbek.log2uml.elements.note.NotePosition;
 import com.tngtech.jgiven.Stage;
@@ -22,6 +19,7 @@ public class MessageActions extends Stage<MessageActions> {
     SequenceDiagram diagramUnderTest;
 
     MessageGroup msgGroupUnderTest;
+    private MessageGroup innerGroupUnderTest;
 
     public MessageActions john_adds_request_message_$_form_$_to_$(@Quoted String msg, String sender, String recipient) {
         diagramUnderTest.add(
@@ -62,13 +60,70 @@ public class MessageActions extends Stage<MessageActions> {
     }
 
     public MessageActions john_adds_the_message_group_$ (String name) {
-        msgGroupUnderTest = DefineMessageGroup.name(name);
-        diagramUnderTest.add(msgGroupUnderTest);
+        defineMsgGroupUnderTest(name, MessageGroupType.GROUP);
         return self();
+    }
+
+    private void defineMsgGroupUnderTest (String name, MessageGroupType type) {
+        msgGroupUnderTest = DefineMessageGroup.name(name).type(type);
+        diagramUnderTest.add(msgGroupUnderTest);
     }
 
     public MessageActions john_adds_sample_request_to_the_group () {
         msgGroupUnderTest.add(DefineMessage.from("sender").to("recipient").text("sample request").type(MessageType.REQUEST));
+        return self();
+    }
+
+    public MessageActions jong_adds_sample_response_to_the_group () {
+        msgGroupUnderTest.add(DefineMessage.from("Funny Bunny").to("Heavy Armor").text("Hasta la vista, baby!").type(MessageType.REQUEST));
+        return self();
+    }
+
+    public MessageActions john_adds_the_optional_message_group_$ (String name) {
+        defineMsgGroupUnderTest(name, MessageGroupType.OPT);
+        return self();
+    }
+
+    public MessageActions john_adds_the_loop_message_group_$ (String name)
+    {
+        defineMsgGroupUnderTest(name, MessageGroupType.LOOP);
+        return self();
+    }
+
+    public MessageActions john_adds_the_parallel_message_group_$ (String name) {
+        defineMsgGroupUnderTest(name, MessageGroupType.PARALLEL);
+        return self();
+    }
+
+    public MessageActions john_adds_the_break_message_group_$ (String name) {
+        defineMsgGroupUnderTest(name, MessageGroupType.BREAK);
+        return self();
+    }
+
+    public MessageActions john_adds_the_critical_message_group_$ (String name) {
+        defineMsgGroupUnderTest(name, MessageGroupType.CRITICAL);
+        return self();
+    }
+
+    public MessageActions john_adds_the_alternative_message_group_$ (String name) {
+        defineMsgGroupUnderTest(name, MessageGroupType.ALTERNATIVE);
+        return self();
+    }
+
+    public MessageActions john_adds_the_alternative_else_message_group_$ (String name) {
+        defineMsgGroupUnderTest(name, MessageGroupType.ELSE);
+        return self();
+    }
+
+
+    public MessageActions john_adds_the_loop_group_to_message_group_$ (String name) {
+        innerGroupUnderTest = DefineMessageGroup.name(name).type(MessageGroupType.LOOP);
+        msgGroupUnderTest.add(innerGroupUnderTest);
+        return self();
+    }
+
+    public MessageActions jong_adds_sample_response_to_the_inner_group () {
+        innerGroupUnderTest.add(DefineMessage.from("Funny Bunny").to("Heavy Armor").text("Hasta la vista, baby!").type(MessageType.REQUEST));
         return self();
     }
 }

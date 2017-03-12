@@ -10,24 +10,46 @@ import java.util.List;
  */
 public class MessageGroup implements Element {
     private final String name;
-    private List<Message> messages = new ArrayList<>();
-    MessageGroup (String name) {
+    private final MessageGroupType type;
+
+    private List<Element> elements = new ArrayList<>();
+
+    MessageGroup (String name, MessageGroupType type) {
+        this.type = type;
         this.name = name;
     }
 
-
-    public void add (Message msg) {
-        messages.add(msg);
+    public MessageGroup add (Element msg) {
+        elements.add(msg);
+        return this;
     }
 
 
     @Override
     public String render () {
         StringBuilder render = new StringBuilder();
-        render.append("group ").append(name).append("\n");
-        for(Message msg : messages) {
-            render.append(msg.render());
+        render = addMessageGroupHeader(render);
+        render = addGroupElements(render);
+        render = addMessageGroupFooter(render);
+        return render.toString();
+    }
+
+    private StringBuilder addMessageGroupFooter (StringBuilder render) {
+        if (type == MessageGroupType.ALTERNATIVE) {
+            return render;
         }
-        return render.append("end\n").toString();
+        return render.append("end\n");
+    }
+
+    private StringBuilder addGroupElements (StringBuilder render) {
+        for(Element element : elements) {
+            render.append(element.render());
+        }
+        return render;
+    }
+
+    private StringBuilder addMessageGroupHeader (StringBuilder render) {
+        render.append(String.format("%s %s\n", type.render(), name));
+        return render;
     }
 }

@@ -12,7 +12,7 @@ import org.junit.Test;
 public class MessageGroupTest extends ScenarioTest<Preconditions, MessageActions, RenderedDiagramQuerys> {
 
     @Test
-    public void messageGroupWithCustomName () {
+    public void messageGroup () {
         given().john_has_diagram();
 
         when().john_adds_the_message_group_$("good news")
@@ -21,5 +21,54 @@ public class MessageGroupTest extends ScenarioTest<Preconditions, MessageActions
         then().rendered_diagram_contains_line_$("group good news")
             .and().rendered_diagram_contains_sample_request_on_next_line()
             .and().rendered_diagram_contains_line_$("end");
+    }
+
+    @Test
+    public void message_group_types() {
+        given().john_has_diagram();
+
+        when().john_adds_the_optional_message_group_$("Optional Elephant")
+            .and().john_adds_the_loop_message_group_$("Looped Situation")
+            .and().john_adds_the_parallel_message_group_$("Parallel Circles")
+            .and().john_adds_the_break_message_group_$("Lunch Break")
+            .and().john_adds_the_critical_message_group_$("Critical Dragon");
+        then().rendered_diagram_contains_line_$("opt Optional Elephant")
+            .rendered_diagram_contains_line_$("loop Looped Situation")
+            .rendered_diagram_contains_line_$("par Parallel Circles")
+            .rendered_diagram_contains_line_$("break Lunch Break")
+            .rendered_diagram_contains_line_$("critical Critical Dragon");
+    }
+
+    @Test
+    public void alternative_message_group() {
+        given().john_has_diagram();
+
+        when().john_adds_the_alternative_message_group_$("Alternative Roads")
+            .and().john_adds_sample_request_to_the_group()
+            .and().john_adds_the_alternative_else_message_group_$("Mainstream Highways")
+            .and().jong_adds_sample_response_to_the_group();
+
+        then().rendered_diagram_contains_line_$("alt Alternative Roads")
+            .and().rendered_diagram_contains_sample_request_on_next_line()
+            .and().rendered_diagram_contains_$_on_next_line("else Mainstream Highways")
+            .and().rendered_diagram_contains_sample_respones_on_next_line()
+            .and().rendered_diagram_contains_$_on_next_line("end");
+    }
+
+    @Test
+    public void message_message_can_contain_another_group() {
+        given().john_has_diagram();
+
+        when().john_adds_the_optional_message_group_$("Optional Elephant")
+            .and().john_adds_sample_request_to_the_group()
+            .and().john_adds_the_loop_group_to_message_group_$("Looped Situation")
+            .and().jong_adds_sample_response_to_the_inner_group();
+
+        then().rendered_diagram_contains_line_$("opt Optional Elephant")
+                .and().rendered_diagram_contains_sample_request_on_next_line()
+                .and().rendered_diagram_contains_$_on_next_line("loop Looped Situation")
+                .and().rendered_diagram_contains_sample_respones_on_next_line()
+                .and().rendered_diagram_contains_$_on_next_line("end")
+                .and().rendered_diagram_contains_$_on_next_line("end");
     }
 }
