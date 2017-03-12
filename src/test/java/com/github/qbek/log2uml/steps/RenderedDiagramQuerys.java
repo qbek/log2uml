@@ -67,7 +67,12 @@ public class RenderedDiagramQuerys extends Stage<RenderedDiagramQuerys> {
 
 
     public RenderedDiagramQuerys rendered_diagram_contains_sample_request_on_next_line () {
-        rendered_diagram_contains_line_$("\"sender\"->\"recipient\":sample request");
+        rendered_diagram_contains_$_on_next_line("\"sender\"->\"recipient\":sample request");
+        return self();
+    }
+
+    public RenderedDiagramQuerys rendered_diagram_contains_sample_respones_on_next_line () {
+        rendered_diagram_contains_$_on_next_line("\"Funny Bunny\"->\"Heavy Armor\":Hasta la vista, baby!");
         return self();
     }
 }
