@@ -5,7 +5,7 @@ package com.github.qbek.log2uml.participants;
  */
 public enum ParticipantType {
     ACTOR ("actor"),
-    PARTICIPANT ("participant");
+    PARTICIPANT ("participant"), BOUNDARY("boundary"), CONTROL("control"), ENTITY("entity"), DATABASE("database");
 
     private String prefix;
 

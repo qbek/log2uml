@@ -14,17 +14,22 @@ import java.io.IOException;
 public class DeclaringParticipantsTest extends ScenarioTest<Preconditions, ParticipantActions, RenderedDiagramQuerys> {
 
     @Test
-    public void johnCanDeclarteActorParticipant () throws IOException {
+    public void john_can_declare_participant () throws IOException {
         given().john_has_diagram();
-        when().john_declares_actor_$("Unicorn");
-        then().rendered_diagram_contains_line_$("actor Unicorn");
-    }
+        when().john_declares_actor_$("Johny Deep")
+            .and().john_declares_participant_$("NoName")
+            .and().john_declares_boundary_$("Keine Grentzen")
+            .and().john_declares_control_$("Mum")
+            .and().john_declares_entity_$("Atom")
+            .and().john_declares_database_$("dBase");
 
-    @Test
-    public void johnCanDeclareStandardParticipant () {
-        given().john_has_diagram();
-        when().john_declares_participant_$("NoName");
-        then().rendered_diagram_contains_line_$("participant NoName");
+
+        then().rendered_diagram_contains_line_$("actor Johny Deep")
+            .and().rendered_diagram_contains_line_$("participant NoName")
+            .and().rendered_diagram_contains_line_$("boundary Keine Grentzen")
+            .and().rendered_diagram_contains_line_$("control Mum")
+            .and().rendered_diagram_contains_line_$("entity Atom")
+            .and().rendered_diagram_contains_line_$("database dBase");
     }
 
     @Test

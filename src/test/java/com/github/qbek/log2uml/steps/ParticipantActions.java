@@ -35,6 +35,26 @@ public class ParticipantActions extends Stage<ParticipantActions> {
         return self();
     }
 
+    public ParticipantActions john_declares_boundary_$ (@Quoted String name) {
+        diagramUnderTest.declare(DefineParticipant.name(name).type(ParticipantType.BOUNDARY));
+        return self();
+    }
+
+    public ParticipantActions john_declares_control_$ (@Quoted String name) {
+        diagramUnderTest.declare(DefineParticipant.name(name).type(ParticipantType.CONTROL));
+        return self();
+    }
+
+    public ParticipantActions john_declares_entity_$ (@Quoted String name) {
+        diagramUnderTest.declare(DefineParticipant.name(name).type(ParticipantType.ENTITY));
+        return self();
+    }
+
+    public ParticipantActions john_declares_database_$ (@Quoted String name) {
+        diagramUnderTest.declare(DefineParticipant.name(name).type(ParticipantType.DATABASE));
+        return self();
+    }
+
     public ParticipantActions john_declares_participant_group_$ (@Quoted String name) {
         groupUnderTest = DefineParticipantGroup.name(name);
         diagramUnderTest.declare(groupUnderTest);
@@ -47,4 +67,7 @@ public class ParticipantActions extends Stage<ParticipantActions> {
         );
         return self();
     }
+
+
+
 }
