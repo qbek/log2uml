@@ -35,7 +35,7 @@ public class MessageGroup implements Element {
     }
 
     private StringBuilder addMessageGroupFooter (StringBuilder render) {
-        if (type == MessageGroupType.ALTERNATIVE) {
+        if (type == MessageGroupType.ELSE) {
             return render;
         }
         return render.append("end\n");

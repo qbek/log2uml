@@ -12,7 +12,7 @@ import org.junit.Test;
 public class MessageGroupTest extends ScenarioTest<Preconditions, MessageActions, RenderedDiagramQuerys> {
 
     @Test
-    public void messageGroup () {
+    public void john_can_create_message_group () {
         given().john_has_diagram();
 
         when().john_adds_the_message_group_$("good news")
@@ -24,7 +24,7 @@ public class MessageGroupTest extends ScenarioTest<Preconditions, MessageActions
     }
 
     @Test
-    public void message_group_types() {
+    public void john_can_crate_many_message_group_types() {
         given().john_has_diagram();
 
         when().john_adds_the_optional_message_group_$("Optional Elephant")
@@ -40,18 +40,22 @@ public class MessageGroupTest extends ScenarioTest<Preconditions, MessageActions
     }
 
     @Test
-    public void alternative_message_group() {
+    public void john_can_create_alternative_message_group_with_else() {
         given().john_has_diagram();
 
         when().john_adds_the_alternative_message_group_$("Alternative Roads")
             .and().john_adds_sample_request_to_the_group()
             .and().john_adds_the_alternative_else_message_group_$("Mainstream Highways")
-            .and().jong_adds_sample_response_to_the_group();
+            .and().jong_adds_sample_response_to_the_group()
+            .and().john_adds_the_alternative_else_message_group_$("You are lost")
+            .and().john_adds_sample_request_to_the_group();
 
         then().rendered_diagram_contains_line_$("alt Alternative Roads")
             .and().rendered_diagram_contains_sample_request_on_next_line()
             .and().rendered_diagram_contains_$_on_next_line("else Mainstream Highways")
             .and().rendered_diagram_contains_sample_respones_on_next_line()
+            .and().rendered_diagram_contains_$_on_next_line("else You are lost")
+            .and().rendered_diagram_contains_sample_request_on_next_line()
             .and().rendered_diagram_contains_$_on_next_line("end");
     }
 

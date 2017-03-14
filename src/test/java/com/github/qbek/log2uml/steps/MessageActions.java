@@ -17,8 +17,10 @@ public class MessageActions extends Stage<MessageActions> {
 
     @ExpectedScenarioState
     SequenceDiagram diagramUnderTest;
+    MessageGroup recentlyCreatedMessageGroup;
+    MessageGroup alternativeMessageGroup;
 
-    MessageGroup msgGroupUnderTest;
+
     private MessageGroup innerGroupUnderTest;
 
     public MessageActions john_adds_request_message_$_form_$_to_$(@Quoted String msg, String sender, String recipient) {
@@ -64,18 +66,13 @@ public class MessageActions extends Stage<MessageActions> {
         return self();
     }
 
-    private void defineMsgGroupUnderTest (String name, MessageGroupType type) {
-        msgGroupUnderTest = DefineMessageGroup.name(name).type(type);
-        diagramUnderTest.add(msgGroupUnderTest);
-    }
-
     public MessageActions john_adds_sample_request_to_the_group () {
-        msgGroupUnderTest.add(DefineMessage.from("sender").to("recipient").text("sample request").type(MessageType.REQUEST));
+        recentlyCreatedMessageGroup.add(DefineMessage.from("sender").to("recipient").text("sample request").type(MessageType.REQUEST));
         return self();
     }
 
     public MessageActions jong_adds_sample_response_to_the_group () {
-        msgGroupUnderTest.add(DefineMessage.from("Funny Bunny").to("Heavy Armor").text("Hasta la vista, baby!").type(MessageType.REQUEST));
+        recentlyCreatedMessageGroup.add(DefineMessage.from("Funny Bunny").to("Heavy Armor").text("Hasta la vista, baby!").type(MessageType.REQUEST));
         return self();
     }
 
@@ -106,24 +103,31 @@ public class MessageActions extends Stage<MessageActions> {
     }
 
     public MessageActions john_adds_the_alternative_message_group_$ (String name) {
-        defineMsgGroupUnderTest(name, MessageGroupType.ALTERNATIVE);
+        alternativeMessageGroup = defineMsgGroupUnderTest(name, MessageGroupType.ALTERNATIVE);
         return self();
     }
 
     public MessageActions john_adds_the_alternative_else_message_group_$ (String name) {
-        defineMsgGroupUnderTest(name, MessageGroupType.ELSE);
+        recentlyCreatedMessageGroup = DefineMessageGroup.name(name).type(MessageGroupType.ELSE);
+        alternativeMessageGroup.add(recentlyCreatedMessageGroup);
         return self();
     }
 
 
     public MessageActions john_adds_the_loop_group_to_message_group_$ (String name) {
         innerGroupUnderTest = DefineMessageGroup.name(name).type(MessageGroupType.LOOP);
-        msgGroupUnderTest.add(innerGroupUnderTest);
+        recentlyCreatedMessageGroup.add(innerGroupUnderTest);
         return self();
     }
 
     public MessageActions jong_adds_sample_response_to_the_inner_group () {
         innerGroupUnderTest.add(DefineMessage.from("Funny Bunny").to("Heavy Armor").text("Hasta la vista, baby!").type(MessageType.REQUEST));
         return self();
+    }
+
+    private MessageGroup defineMsgGroupUnderTest (String name, MessageGroupType type) {
+        recentlyCreatedMessageGroup = DefineMessageGroup.name(name).type(type);
+        diagramUnderTest.add(recentlyCreatedMessageGroup);
+        return recentlyCreatedMessageGroup;
     }
 }
