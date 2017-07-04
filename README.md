@@ -26,9 +26,6 @@ Simple java wrapper for plantuml, allow to expressively create UML diagrams with
 
 _log2uml_ repository includes samples of all its features.
 
-
-
-
 Compile it
 
 ```bash
@@ -40,13 +37,14 @@ and run it:
 mvn exec:java
 ```
 
-
-
 <a name="jar-file"></a>
 ### JAR file
 
-To add _log2uml_ as JAR to your project class path, first you have to generate it
+To add _log2uml_ as JAR to your project class path, first you have to generate it using following command:
 
+```bahs
+mvn clean package
+```
 
 <a name="maven-dependency"></a>
 ### Maven dependency
@@ -60,7 +58,6 @@ You need to add following maven dependency to your pom.xml file:
     <version>0.2</version>
 </dependency>
 ```
-
 
 <a name="basic-diagram"></a>
 ### Basic diagram
@@ -287,6 +284,9 @@ group_types.add(altElse);
 
 <a name="notes"></a>
 ### Notes
+
+You can add some note to
+
 
 ```java
 exampleDiagram.addNote(
