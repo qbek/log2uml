@@ -3,6 +3,7 @@ package com.github.qbek.log2uml.elements.message;
 import com.github.qbek.log2uml.elements.Element;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,8 +20,8 @@ public class MessageGroup implements Element {
         this.name = name;
     }
 
-    public MessageGroup add (Element msg) {
-        elements.add(msg);
+    public MessageGroup add (Element... elements) {
+        Collections.addAll(this.elements, elements);
         return this;
     }
 
