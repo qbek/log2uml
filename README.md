@@ -289,12 +289,29 @@ You can add some note to
 
 
 ```java
-exampleDiagram.addNote(
-    DefineNote.text("Sample note").position(LEFT).build()
-);
+SequenceDiagram notes = SequenceDiagram.title("Notes");
 
-exampleDiagram.addNote(
-    DefineNote.text("Another note").position(RIGHT).build()
+notes.add(
+        DefineMessage
+                .from("Jeffrey")
+                .to("Dad")
+                .text("Daaaad, can I eat chocolate cake?")
+                .type(MessageType.REQUEST),
+
+        DefineNote
+                .text("Typical morning request")
+                .position(NotePosition.LEFT),
+
+        DefineMessage
+                .from("Dad")
+                .to("Jeffrey")
+                .text("Ask mother")
+                .type(MessageType.RESPONSE),
+
+        DefineNote
+                .text("Defensive move")
+                .position(NotePosition.RIGHT)
 );
 ```
 
+![Message notes example](https://github.com/qbek/log2uml/blob/master/doc/message_notes.png "Message notes diagram")
